@@ -1,0 +1,52 @@
+<%= init_tinymce_hammer_if_required %>
+
+<h1> Make new ticket <h1>
+  <%= form_for @ticket, :html => { :multipart => true} do |n| %>
+    <% if @ticket.errors.any? %>
+        <div id="errorExplanation">
+        <p>
+           <%= pluralize(@ticket.errors.count, "error") %> prohibited this user from being saved:
+        </p>
+        <ul>
+           <% @ticket.errors.full_messages.each do |msg| %>
+           <li><%= msg %></li>
+           <% end %>
+        </ul>
+        </div>
+    <% end %>
+    
+    <div>
+      <p>
+        <%= n.label :short_summary  %>
+        <%= n.text_field :short_summary  %>
+      </p>
+      
+      <p>
+        <%= n.label :full_description %>
+        <%= n.tinymce :full_description  %>
+      </p>
+      <p>
+        <%= n.label :priority_id %>
+        <%= n.select :priority_id, @priorities, { :include_blank => false } %> 
+      </p>
+      
+      <p>
+        <%= n.label :assign_to_id %>
+        <%= n.select :assign_to_id,  @assign_to_users, { :include_blank => false } %> 
+      </p>
+      
+      <div id="window_block2">     
+        <%= n.fields_for :assets_tickets do |asset|%>
+         <p>
+           <%= asset.file_field :file %>
+         </p>  
+        <%end%>
+      </div>
+      <%= n.hidden_field :status_id, :value => "1"%>       
+      <%= n.submit %>
+    </div>
+    
+  <% end %>
+  <%= link_to 'Back', tickets_path %>
+  
+ 

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/statureservice_rails3version/!svn/ver/709/lib/google-weather/test
+END
+test_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/statureservice_rails3version/!svn/ver/709/lib/google-weather/test/test_helper.rb
+END
+google_weather_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/statureservice_rails3version/!svn/ver/709/lib/google-weather/test/google_weather_test.rb
+END

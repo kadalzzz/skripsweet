@@ -1,0 +1,10 @@
+$("#comments_show").html(" <%= j( render :partial => "tickets/comments",
+                             :locals => {:comments => @comments} ) %>")
+$("#new_comments_ticket").val("");
+
+$("#new_comments_ticket")[0].reset();
+
+if (typeof(tinyMCE) != 'undefined') {
+$('#edit-comment').val(''); // Removes all paragraphs in the active editor
+
+}

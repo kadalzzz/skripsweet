@@ -1,0 +1,63 @@
+<%= init_tinymce_hammer_if_required %>
+<h1> Edit ticket <h1>
+  <%= form_for @ticket do |edit| %>
+    <% if @ticket.errors.any? %>
+        <div id="errorExplanation">
+        <p>
+           <%= pluralize(@ticket.errors.count, "error") %> prohibited this user from being saved:
+        </p>
+        <ul>
+           <% @ticket.errors.full_messages.each do |msg| %>
+           <li><%= msg %></li>
+           <% end %>
+        </ul>
+        </div>
+    <% end %>
+    
+    <div>
+      <p>
+        <%= edit.label :short_summary  %>
+        <%= edit.text_field :short_summary  %>
+      </p>
+      
+      <p>
+        <%= edit.label :full_description %>
+        <%= edit.tinymce :full_description  %>
+      </p>
+      <p>
+        <%= edit.label :priority_id %>
+        <%= edit.select :priority_id, @priorities, { :include_blank => false } %> 
+      </p>
+      
+      <p>
+        <%= edit.label :assign_to_id %>
+        <%= edit.select :assign_to_id,  @assign_to_users, { :include_blank => false } %> 
+      </p>
+      
+      
+      
+      <%= edit.fields_for :assets_tickets do |asset|%>
+        <%if asset.object.new_record? %>
+        <h4>
+          <%= asset.file_field :file %>
+        </h4>
+        <%end%>  
+      <%end%>
+      
+      <%= edit.fields_for :assets_tickets do |asset|%>
+        <%unless asset.object.new_record? %>
+        <p>
+           <%=  link_to asset.object.file_file_name,  asset.object.file.url %>
+           <%= link_to "Delete", delete_file_path(asset.object.id), confirm: 'Are You Sure?' %>
+        </p>
+        <%end%>  
+      <%end%>
+     
+        <%= edit.hidden_field :status_id, :value => @ticket.status.id %>
+              
+       <%= edit.submit %>
+    </div>
+    
+  <% end %>
+  <%= link_to 'Back', tickets_path %>
+    

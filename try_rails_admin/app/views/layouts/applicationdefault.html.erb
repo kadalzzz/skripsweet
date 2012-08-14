@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TryRailsAdmin</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<header>
+  <%= raw(welcome_text) %>
+</header>
+<table>
+  <tr>
+    <td>
+      <% if current_user.nil?%>
+        <p> PLEASE LOGIN FIRST ===> <p>
+      <% else %>  
+        <%= render :partial => "categories/index" %>
+      <% end %>    
+    </td>
+    <td>
+      <%= yield %>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

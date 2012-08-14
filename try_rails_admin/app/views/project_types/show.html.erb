@@ -1,0 +1,46 @@
+<head>
+  <%= javascript_include_tag 'jquery.embedly.js' %>
+  <%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js' %>
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+    $("div a").embedly({maxWidth: 200, key : 'e27c302eb5cc11e1ab024040aae4d8c9'});
+    });
+  </script>
+
+</head>
+<body>
+<table class="table table-striped table-bordered  table-condensed">
+
+  <tr>
+    <th>Name</th>
+    <th>Category</th>
+    <th>Link</th>
+    <th> Download Docs</th>
+  </tr>
+  <% @products.each do |product| %>
+    <tr>
+      <td>
+        <%= link_to product.name, product_path(product.id) %> <br />
+        <%= image_tag product.photo.url(:thumb) %>
+      </td>
+      <td><%= product.category.name %></td>
+      <td><%= product.link %></td>
+     
+      <td>
+        <% unless product.assets_products.nil? %>
+          <% product.assets_products.each do |aset|%>
+            <ul class="unstyled">
+              <li>
+                <%=  link_to aset.file_file_name,  aset.file.url %>
+              </li>
+            </ul>
+          <%end%>
+        <%end%>
+      </td>
+
+    </tr>
+  <%end%>
+</table>
+</body>
+	  

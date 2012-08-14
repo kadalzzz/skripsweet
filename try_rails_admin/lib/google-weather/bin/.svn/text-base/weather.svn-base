@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require File.dirname(__FILE__) + '/../lib/google_weather'
+
+path = Pathname(ENV["HOME"]).join('.weather')
+
+if path.exist? && ARGV.size == 0
+  param = path.read
+else
+  if ARGV.size == 0
+    puts 'Weather [Powered by Google]'
+    puts 'USAGE: weather [zip code or city]'
+    puts 'EXAMPLES:'
+    puts '  weather 46544'
+    puts '  weather "mishawaka, in"'
+    exit
+  end
+
+  param = ARGV[0]
+end
+
+weather = GoogleWeather.new(param)
+current = weather.current_conditions
+puts
+puts "#{weather.forecast_information.city}"
+puts "#{current.temp_f}° #{current.condition}"
+puts "#{current.wind_condition}"
+puts "#{current.humidity}"
+puts
+
+weather.forecast_conditions.each do |condition|
+  puts "#{condition.day_of_week}"
+  puts "  #{condition.condition}"
+  puts "  High: #{condition.high}°"
+  puts "  Low:  #{condition.low}°"
+end
+
+puts

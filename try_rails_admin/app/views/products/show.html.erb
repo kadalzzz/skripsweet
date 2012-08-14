@@ -1,0 +1,78 @@
+<head>
+  <%= javascript_include_tag 'jquery.embedly.js' %>
+  <%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js' %>
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+    $("div a").embedly({maxWidth: 500, key : 'e27c302eb5cc11e1ab024040aae4d8c9'});
+    });
+  </script>
+
+</head>
+
+<body>
+  <p> 
+    <%= flash[:error]  %>
+    <%= flash[:notice] %>
+  </p>  
+  <h1>Showing  <%= @product.name %> </h1>
+
+  <div class="thumbnail span3 ">
+    <p>
+      <% if @product.photo.exists? then %>
+        <%= image_tag @product.photo.url(:small) %>
+      <% end %>
+
+    <p>
+      <b>Category  :</b>
+      <%= @product.category.name %>
+    </p>
+
+    <p>
+      <b>Description  :</b>
+      </br>
+      <%= raw @product.description %>
+    </p>
+
+    <p>
+      <% unless @product.assets_products.nil? %>
+        <b>Documentation :</b> 
+          
+        <% @product.assets_products.each do |aset|%>
+          <ul class="unstyled">
+            <li>
+              <%=  link_to aset.file_file_name,  aset.file.url %>
+            </li>
+          </ul>
+        <%end%>
+      <%end%>
+    </p>
+
+  </p>
+
+</div>
+<div class="hero-unit span3">
+
+  <p>
+    <b>Link :</b>
+    <% unless @product.link.nil? %>
+      <%= link_to @product.link, link_show(@product.link), :target => "_blank" %>
+    <% else %>
+      No Link Available
+    <%end%>
+  </p>
+
+</div>
+<div class="page-header"> </div>
+
+<div class="span5">
+
+  <% unless @product.video_link.blank? %>
+    <%= link_to "Video", @product.video_link %>
+  <%  end %>
+  <p>
+    <%= link_to 'Back', categories_path %>
+  </p>
+
+</div>
+</body>

@@ -1,0 +1,18 @@
+ <% comments.each do |comment| %>
+  
+   <ul class="unstyled"> <em> <%= comment.writter_name %> Says: </em>
+     <li> <%= raw(comment.content) %> <li>
+      <% unless comment.asset.nil? %>
+        <b>File :</b> 
+          
+        <% comment.asset.each do |aset|%>
+          <ul class="unstyled">
+            <li>
+              <%=  link_to aset.file_file_name,  aset.file.url %>
+            </li>
+          </ul>
+        <%end%>
+      <%end%>
+     </br>
+   </ul>
+  <% end %>

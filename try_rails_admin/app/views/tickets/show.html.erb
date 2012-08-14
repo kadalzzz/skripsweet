@@ -1,0 +1,101 @@
+
+<div class="span7" style="border: 1px solid" >
+  <div class="row">
+    <div class="span5" >
+      <table class="table">
+        <tr>
+          <td colspan=4>
+            <strong><%= @ticket.short_summary%></strong>
+          </td>
+        </tr>
+        <tr>
+          <td> <strong> Priority: </strong </td>
+          <td> <%=@ticket.priority.name %></td>
+          <td> <strong>Reporter: </strong </td>
+          <td> <%=@ticket.user.username %> 
+            <% if @ticket.user.username == current_user.username %>
+              (me)
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+          <td> <strong>Assign to: </strong</td>
+          <td> <%=@ticket.assign_to.username %>
+            <% if @ticket.assign_to.username == current_user.username %>
+              (me)
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+          <td> <strong>Status: </td>
+          <td> <%=@ticket.status.name %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="span1">
+      <h2><strong># <%= @ticket.id%> </strong></h2>
+    </div>
+    <div class="span1 tabbable tabs-right">
+      <ul class="nav nav-tabs">
+        <li><%= link_to 'Back', tickets_path %> </li>
+        <li><%= link_to 'Edit', edit_ticket_path(@ticket.id) %> </li>
+        <li><% if @ticket.status.id == 1 %>
+              <%= link_to 'Accept', update_status_path(@ticket.id, "2")  %>
+            <% elsif @ticket.status.id == 2%> 
+              <%= link_to 'Resolve', update_status_path(@ticket.id, "3")  %>
+              </li> <li><%= link_to 'Unaccept', update_status_path(@ticket.id, "1")  %> 
+            <% elsif @ticket.status.id == 3%> 
+              <%= link_to 'Close', update_status_path(@ticket.id, "4")  %>   
+           <% end%>
+        </li>  
+      </ul>  
+    </div>  
+  </div>
+</div>
+<div class="span7">
+  <h3> <strong> Description: </strong> </h3>
+  </br>
+  <%= raw(@ticket.full_description)%>
+  </br>
+  </br>
+  <p>
+    <% unless @ticket.assets_tickets.nil? %>
+        <b>Documentation :</b> 
+          
+        <% @ticket.assets_tickets.each do |aset|%>
+          <ul class="unstyled">
+            <li>
+              <%=  link_to aset.file_file_name,  aset.file.url %>
+            </li>
+          </ul>
+        <%end%>
+      <%end%>
+  </p>
+  
+</div>
+
+<div id="comments_show" class="span7">
+  <h3> <strong> Comments: </strong> </h3>
+  <%= render :partial => "comments", :locals => {:comments => @comments}  %>
+  </br> 
+</div>
+
+<div id="tinymce" class="span7">
+  <%= form_for @comment, :url => comments_tickets_path, :html => { :multipart => true}  do  |comment| -%>
+    <p>
+        <%= comment.fields_for :assets_comments do |asset|%>
+         <p>
+           <%= asset.file_field :file %>
+         </p>  
+        <%end%>
+    </p>
+    <%= comment.tinymce :content %>
+    <%= comment.hidden_field :ticket_id, :value => @ticket.id %>
+    <%= comment.hidden_field :user_id, :value => current_user.id %>
+    <%= comment.submit "comment" %>
+  <% end %>   
+</div>

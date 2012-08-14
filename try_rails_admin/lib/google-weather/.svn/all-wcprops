@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/statureservice_rails3version/!svn/ver/709/lib/google-weather
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/statureservice_rails3version/!svn/ver/709/lib/google-weather/LICENSE
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/statureservice_rails3version/!svn/ver/709/lib/google-weather/Rakefile
+END
+README.rdoc
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/statureservice_rails3version/!svn/ver/709/lib/google-weather/README.rdoc
+END
+Gemfile
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/statureservice_rails3version/!svn/ver/709/lib/google-weather/Gemfile
+END
+google-weather.gemspec
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/statureservice_rails3version/!svn/ver/709/lib/google-weather/google-weather.gemspec
+END

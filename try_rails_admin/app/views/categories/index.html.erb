@@ -1,0 +1,11 @@
+
+<%= flash[:notice] %> 
+<nav>
+  <% @categories.each do |category| %>
+    <ul>
+      <li>
+        <%= link_to category.name, category_path(category.id)%>
+      </li>
+    </ul>
+  <%end%>
+</nav> 
