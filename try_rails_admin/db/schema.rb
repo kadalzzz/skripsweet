@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120711034534) do
+ActiveRecord::Schema.define(:version => 20120823193002) do
 
   create_table "assets", :force => true do |t|
     t.string   "file_file_name"
@@ -41,6 +41,11 @@ ActiveRecord::Schema.define(:version => 20120711034534) do
     t.datetime "updated_at"
   end
 
+  create_table "comparsions", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "priorities", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -60,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20120711034534) do
     t.string   "video_link"
     t.string   "project_type_id"
     t.string   "technology_type_id"
+    t.string   "just_testing"
   end
 
   create_table "project_types", :force => true do |t|

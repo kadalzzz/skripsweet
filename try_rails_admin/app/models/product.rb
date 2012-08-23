@@ -1,5 +1,7 @@
 class Product < ActiveRecord::Base
   
+  before_create :initiation
+  
   belongs_to :category
   belongs_to :project_type
   belongs_to :technology_type
@@ -11,7 +13,10 @@ class Product < ActiveRecord::Base
   has_attached_file :photo, :styles => {
                                          :thumb=> "100x100#",
                                          :small=> "400x400>" }
-                                         
+  
+  def initiation   
+    self.just_testing = "try"                                       
+  end
   
   def self.search(search)
     search_condition = "%" + search + "%"
