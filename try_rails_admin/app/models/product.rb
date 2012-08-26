@@ -15,7 +15,7 @@ class Product < ActiveRecord::Base
                                          :small=> "400x400>" }
   
   def initiation   
-    self.just_testing = "try"                                       
+    self.just_testing = self.name                                       
   end
   
   def self.search(search)

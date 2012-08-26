@@ -11,7 +11,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120823193002) do
+ActiveRecord::Schema.define(:version => 20120826024847) do
+
+  create_table "ahp_afters", :force => true do |t|
+    t.integer  "standard_a"
+    t.integer  "satisfaction_a"
+    t.integer  "total_user_a"
+    t.integer  "modernity_a"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ahp_befores", :force => true do |t|
+    t.integer  "stand_to_satis"
+    t.integer  "stand_to_tot"
+    t.integer  "stand_to_mod"
+    t.integer  "satis_to_tot"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "satis_to_mod"
+    t.integer  "tot_to_mod"
+  end
 
   create_table "assets", :force => true do |t|
     t.string   "file_file_name"
