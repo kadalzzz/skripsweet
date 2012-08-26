@@ -24,7 +24,7 @@ class Algorithm
         col = handler
         while col <= 3
           pairwise[row][col] = (arr[i])
-          pairwise[col][row] = (1/arr[i])
+          pairwise[col][row] = (1/arr[i]).to_f
           i += 1
           col += 1
         end
@@ -40,10 +40,10 @@ class Algorithm
       modernity_temp = pairwise_matrices.row(3).to_a.sum
            
       normalizator = standard_temp + satisfiction_temp + total_user_temp + modernity_temp 
-      standard = (standard_temp / normalizator)
-      satisfiction = (satisfiction_temp / normalizator)
-      total_user = (total_user_temp / normalizator)
-      modernity = (modernity_temp / normalizator)
+      standard = (standard_temp / normalizator).to_f
+      satisfiction = (satisfiction_temp / normalizator).to_f
+      total_user = (total_user_temp / normalizator).to_f
+      modernity = (modernity_temp / normalizator).to_f
      
       
       sum = (standard  + satisfiction + total_user + modernity )
@@ -61,10 +61,10 @@ class Algorithm
           #                                :modernity_a => modernity
            #                              )
      # end
-      
+       return standard, satisfiction, total_user, modernity, sum
     end
     
-    return standard, satisfiction, total_user, modernity
+   
   end
   
   def self.bayes_score
