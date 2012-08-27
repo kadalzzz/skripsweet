@@ -41,12 +41,16 @@
 	    </td>  
 	  
 	    <td>
-	      <% if product.pdf.exists? then %>
-	        <%=  link_to 'Download',  product.pdf.url %>
-	      <% else %>
-	        No file to Download
-        <% end %>
-	    </td>  
+        <% unless product.assets_products.nil? %>
+          <% product.assets_products.each do |aset|%>
+            <ul class="unstyled">
+              <li>
+                <%=  link_to aset.file_file_name,  aset.file.url %>
+              </li>
+            </ul>
+          <%end%>
+        <%end%>
+      </td>
 	  
 	  </tr>
 	  <%end%>

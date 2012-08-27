@@ -20,6 +20,9 @@ TryRailsAdmin::Application.routes.draw do
   match 'products/:json', :to => 'products#search', :as => "search" 
   root :to => 'home#index'
   match 'update_status_tickets/:id/:status', :to => 'tickets#update_status', :as => "update_status" 
+  
+  resource :rank
+  match 'ranking', :to =>'rank#index', :as => "ranking"
 
   # Sample resource route with options:
   #   resources :products do

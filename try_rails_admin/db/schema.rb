@@ -11,13 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120826024847) do
+ActiveRecord::Schema.define(:version => 20120827162139) do
 
   create_table "ahp_afters", :force => true do |t|
-    t.integer  "standard_a"
-    t.integer  "satisfaction_a"
-    t.integer  "total_user_a"
-    t.integer  "modernity_a"
+    t.float    "standard_a"
+    t.float    "satisfaction_a"
+    t.float    "total_user_a"
+    t.float    "modernity_a"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -85,7 +85,11 @@ ActiveRecord::Schema.define(:version => 20120826024847) do
     t.string   "video_link"
     t.string   "project_type_id"
     t.string   "technology_type_id"
-    t.string   "just_testing"
+    t.integer  "standard"
+    t.integer  "satisfaction"
+    t.integer  "total_user"
+    t.integer  "modernity"
+    t.float    "total_score"
   end
 
   create_table "project_types", :force => true do |t|

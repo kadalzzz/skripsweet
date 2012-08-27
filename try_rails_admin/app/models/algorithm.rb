@@ -48,27 +48,36 @@ class Algorithm
       
       sum = (standard  + satisfiction + total_user + modernity )
       
-      #if AhpAfter.blank?
-       # AhpAfter.build_ahp_after(:standard_a => standard, 
-        #                          :satisfiction_a => satisfiction,
-         #                         :total_user_a => total_user,
-          #                        :modernity_a => modernity   
-           #                      ).save
-      #else
-       # AhpAfter.first.update_attributes(:standard_a => standard, 
-        #                                  :satisfiction_a => satisfiction,
-         #                                 :total_user_a => total_user,
-          #                                :modernity_a => modernity
-           #                              )
-     # end
+      if AhpAfter.first.blank?
+        AhpAfter.create(:standard_a => standard, 
+                                  :satisfaction_a => satisfiction,
+                                  :total_user_a => total_user,
+                                  :modernity_a => modernity   
+                                 ).save
+      else
+        AhpAfter.first.update_attributes(:standard_a => standard, 
+                                          :satisfaction_a => satisfiction,
+                                          :total_user_a => total_user,
+                                          :modernity_a => modernity
+                                         )
+      end
        return standard, satisfiction, total_user, modernity, sum
     end
     
    
   end
   
-  def self.bayes_score
-  
+  def self.bayes_score(stand, satis, tot, mod)
+    if AhpAfter.first.nil?
+      Algorithm.ahp_priority
+    else
+      value = AhpAfter.first
+      
+      total_score = ((value.standard_a * stand)+(value.satisfaction_a * satis) + (value.total_user_a * tot) + (value.modernity_a * mod))
+      
+    end
+    
+    return total_score 
   end
 
 end

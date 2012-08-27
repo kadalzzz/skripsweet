@@ -1,6 +1,7 @@
 class Product < ActiveRecord::Base
   
   before_create :initiation
+  before_update :initiation
   
   belongs_to :category
   belongs_to :project_type
@@ -15,7 +16,7 @@ class Product < ActiveRecord::Base
                                          :small=> "400x400>" }
   
   def initiation   
-    self.just_testing = self.name                                       
+    self.total_score = Algorithm.bayes_score(self.standard, self.satisfaction, self.total_user, self.modernity)                                      
   end
   
   def self.search(search)

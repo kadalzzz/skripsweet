@@ -1,0 +1,36 @@
+
+<table class="table table-striped table-bordered  table-condensed">
+
+  <tr>
+    <th>Rank</th> 
+    <th>Name</th>
+   
+    <th>Link</th>
+    <th>Standard</th>
+    <th>Satisfaction</th>
+    <th>Total User</th>
+    <th>Modernity</th>
+    <th>Total Score</th>
+  </tr>
+  <% rank = 1 %>
+  <% @products.each do |product| %>
+    <tr>
+      <td> <%= rank %> </td>
+      <td>
+        <%= link_to product.name, product_path(product.id) %> <br />
+        <%= image_tag product.photo.url(:thumb) %>
+      </td>
+      
+      <td><%= product.link %></td>
+     
+      <td><%= product.standard %> </td>
+      <td><%= product.satisfaction %> </td>
+      <td><%= product.total_user %> </td>
+      <td><%= product.modernity %> </td>
+      <td><%= product.total_score %> </td>  
+    </tr>
+    <% rank = rank + 1 %>
+  <%end%>
+</table>
+
+
