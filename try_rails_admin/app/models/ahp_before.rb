@@ -4,6 +4,7 @@ class AhpBefore < ActiveRecord::Base
   
   def run_ahp
     Algorithm.ahp_priority
+    Algorithm.auto_bayes_score
   end
 
 end

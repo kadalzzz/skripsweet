@@ -4,47 +4,7 @@
 <body>
 <div class="span7">
   <div class="hero-unit span6">  
-    <div class="row">
-    <h2 style="text-align : center;"> Today </h2>
-   
-      <div class="span3">
-        <div class="row">
-          <div class="span1">          
-            <p> <%= image_tag "http://www.google.com#{@icon}" %> </p>
-          </div>
-          <div class=span2>
-            <p> <%= @resume%> </p>
-            <p> <%= @city %>, <%= @state%> </p>
-            <p> <%= @country %> </p>
-            <p> <%= @zip_code %> </p>
-          </div>
-        </div>  
-      </div> 
-      <div class="span3">  
-        <p> Temp : <%= @temp_c %>°C / <%= @temp_f %>°F </p>
-        <p> <%= @humidity %> </p>
-        <p> <%= @wind %> </p>
-      </div>
-    </div>
     
-    <div class="row" >
-      <% @forecast_conditions.each do |forecast| %>
-        <div class="span3" style="margin: 5px ; padding: 5px; border: 1px solid">
-          <h4><%= forecast.day_of_week %></h4>
-          <div class="row">
-            <div class="span1">
-              <p> <%= image_tag "http://www.google.com#{forecast.icon}" %> </p>
-            </div>
-            <div class="span2" >
-              <h4><%= forecast.condition %></h4>
-              <h4> Low = <%= ApiCaller.tempc(forecast.low)%>°C </h4>
-              <h4> High= <%= ApiCaller.tempc(forecast.high)%>°C </h4>
-            </div>
-          </div>    
-          
-        </div>
-      <% end %>
-    </div>
   </div>
   
   <div class="row-fluid">

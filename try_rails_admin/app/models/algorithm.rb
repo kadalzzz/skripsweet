@@ -70,14 +70,45 @@ class Algorithm
   def self.bayes_score(stand, satis, tot, mod)
     if AhpAfter.first.nil?
       Algorithm.ahp_priority
+      value = AhpAfter.first
     else
       value = AhpAfter.first
-      
-      total_score = ((value.standard_a * stand)+(value.satisfaction_a * satis) + (value.total_user_a * tot) + (value.modernity_a * mod))
-      
     end
     
+     max = Product.maximum(:total_user) 
+     min = Product.minimum(:total_user) 
+      
+      tot_user = (((tot - min)/ max - min) * 100).to_f
+      
+      if (tot_user < 20) 
+        tu = 1
+      elsif (tot_user >= 20) and (tot_user < 40)
+        tu = 2
+      elsif (tot_user >= 40) and (tot_user < 60)
+      
+        tu = 3
+      elsif (tot_user >= 60) and (tot_user < 80) 
+      
+        tu = 4
+      elsif (tot_user >= 80) and (tot_user <= 100) 
+      
+        tu = 5
+      end
+      
+      total_score = ((value.standard_a * stand)+(value.satisfaction_a * satis) + (value.total_user_a * tu) + (value.modernity_a * mod))
+    
     return total_score 
+  end
+
+  def self.auto_bayes_score
+    products = Product.all
+    
+    products.each do |product|
+      new_tot_score = Algorithm.bayes_score(product.standard, product.satisfaction, product.total_user, product.modernity )
+      
+      Product.find_by_id(product.id).update_attributes( :total_score => new_tot_score )
+    
+    end
   end
 
 end
