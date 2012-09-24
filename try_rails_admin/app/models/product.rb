@@ -15,6 +15,18 @@ class Product < ActiveRecord::Base
                                          :thumb=> "100x100#",
                                          :small=> "400x400>" }
   
+  def standard_enum
+     [1,2,3,4,5]
+  end 
+  
+  def satisfaction_enum
+     [1,2,3,4,5]
+  end
+  
+  def modernity_enum
+     [1,2,3,4,5]
+  end                                        
+  
   def initiation   
     self.total_score = Algorithm.bayes_score(self.standard, self.satisfaction, self.total_user, self.modernity)                                      
   end

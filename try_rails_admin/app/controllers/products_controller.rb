@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
  #auto_complete_for :post, :name 
 
- before_filter :require_login, :only => [:show]
+ before_filter :require_login
 
   
 

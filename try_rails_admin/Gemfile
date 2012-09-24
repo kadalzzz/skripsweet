@@ -20,6 +20,7 @@ gem "awesome_print"
 #gem install ruby-debug
 gem "airbrake"
 gem "simple-navigation"
+#gem "cancan"
 
 #gem 'will_paginate', '~> 3.0'
 #gem "google-geocoder", "~> 0.1.0"

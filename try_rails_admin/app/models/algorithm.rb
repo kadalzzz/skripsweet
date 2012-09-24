@@ -12,7 +12,7 @@ class Algorithm
       arr = []
       ahp_before.attributes.each do |i, val|
         unless i == "id" || i == "created_at" || i == "updated_at"
-          arr = arr << val
+          arr = arr << val.to_f
         end
       end
  
@@ -31,9 +31,12 @@ class Algorithm
         handler += 1          
         row += 1
       end
-      
+     
       pairwise_matrices = Matrix.rows(pairwise) ** 2
-    
+      puts "=================================#{pairwise}============================="
+      puts "=================================#{pairwise_matrices}============================="
+      
+      
       standard_temp = pairwise_matrices.row(0).to_a.sum
       satisfiction_temp = pairwise_matrices.row(1).to_a.sum
       total_user_temp = pairwise_matrices.row(2).to_a.sum

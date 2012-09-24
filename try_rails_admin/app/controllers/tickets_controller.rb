@@ -38,6 +38,7 @@ class TicketsController < ApplicationController
   def update_status
     ticket = Ticket.find_by_id(params[:id])
     ticket.update_attribute(:status_id, params[:status])
+    TicketMailer.update_notification(@ticket.assign_to.email, @ticket).deliver
     redirect_to ticket_path(ticket.id)
   end
   

@@ -1,0 +1,44 @@
+<%= @user.email %>,
+
+You Have a new Ticket in portfolio Apps
+
+please follow this link
+
+<p><%= link_to @ticket.short_summary, ticket_url(@ticket.id , :host => "localhost:3000") %></p>
+
+<div class="span7" style="border: 1px solid" >
+  <div class="row">
+    <div class="span5" >
+      <table class="table">
+        <tr>
+          <td colspan=4>
+            <strong><%= link_to @ticket.short_summary, ticket_url(@ticket.id , :host => "localhost:3000") %></strong>
+          </td>
+        </tr>
+        <tr>
+          <td> <strong> Priority: </strong </td>
+          <td> <%=@ticket.priority.name %></td>
+          <td> <strong>Reporter: </strong </td>
+          <td> <%=@ticket.user.username %> </td>
+          <td rowspan="3"> <h2><strong># <%= @ticket.id%> </strong></h2> </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+          <td> <strong>Assign to: </strong</td>
+          <td> <%=@ticket.assign_to.username %> </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+          <td> <strong>Status: </td>
+          <td> <%=@ticket.status.name %></td>
+        </tr>
+      </table>
+    </div>
+  <div>  
+    <h3> <strong> Description: </strong> </h3>
+    </br>
+    <%= raw(@ticket.full_description)%>
+  </div>
+</div>

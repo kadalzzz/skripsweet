@@ -10,7 +10,7 @@ class AssetsTicketsController < ApplicationController
         #format.js
         render :new
       else
-        flash[:error] = 'Comment was failed to create.'
+        flash[:error] = 'Assets was failed to create.'
         render :new
       end
   end

@@ -3,6 +3,8 @@
 
 RailsAdmin.config do |config|
 
+  #config.authorize_with :cancan
+
   # If your default_local is different from :en, uncomment the following 2 lines and set your default locale here:
   # require 'i18n'
   # I18n.default_locale = :de
@@ -20,7 +22,32 @@ RailsAdmin.config do |config|
   # or for a dynamic name:
   # config.main_app_name = Proc.new { |controller| [Rails.application.engine_name.titleize, controller.params['action'].titleize] }
 
-
+  config.model Product do
+    edit do
+      configure :total_score do
+        hide
+      end
+    end    
+  end
+  
+  config.model AhpAfter do
+    visible false
+  end
+  
+  config.model Priority do
+    visible false
+  end
+ 
+ config.model Status do
+    visible false
+ end
+ 
+  config.model AhpBefore do
+    label "Set AHP Priorities" 
+    #label_plural "Beautiful boxen"
+  end
+  
+  
   #  ==> Global show view settings
   # Display empty fields in show views
   # config.compact_show_view = false
